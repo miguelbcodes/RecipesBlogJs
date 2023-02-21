@@ -1,0 +1,146 @@
+[
+    {
+        "recipeName": "Spaghetti with Tomato Sauce",
+        "ingredients": [
+            {
+                "amount": 400,
+                "unity": "g",
+                "element": "spaghetti"
+            },
+            {
+                "amount": 800,
+                "unity": "g",
+                "element": "canned tomatoes"
+            },
+            {
+                "amount": 1,
+                "unity": "",
+                "element": "onion, chopped"
+            },
+            {
+                "amount": 2,
+                "unity": "",
+                "element": "cloves garlic, minced"
+            },
+            {
+                "amount": "",
+                "unity": "",
+                "element": "Salt and pepper, to taste"
+            }
+        ],
+        "recipeAmount": 4,
+        "instructions": [
+            "Cook the spaghetti according to package instructions, until al dente.",
+            "While the spaghetti is cooking, heat the olive oil in a pan over medium heat.",
+            "Add the chopped onion and garlic to the pan and sauté until translucent.",
+            "Add the canned tomatoes and stir until heated through.",
+            "Season with salt and pepper to taste.",
+            "Serve the spaghetti with the tomato sauce on top."
+        ]
+    },
+    {
+        "recipeName": "Tuna Salad",
+        "ingredients": [
+            {
+                "amount": 2,
+                "unity": "",
+                "element": "cans of tuna (160g each)"
+            },
+            {
+                "amount": 0.5,
+                "unity": "",
+                "element": "cans of tuna (160g each)"
+            },
+            {
+                "amount": 0.5,
+                "unity": "",
+                "element": "red onion, chopped"
+            },
+            {
+                "amount": 2,
+                "unity": "",
+                "element": "tablespoons mayonnaise"
+            },
+            {
+                "amount": 1,
+                "unity": "",
+                "element": "tablespoon lemon juice"
+            },
+            {
+                "amount": "",
+                "unity": "",
+                "element": "Salt and pepper, to taste"
+            }
+        ],
+        "recipeAmount": 2,
+        "instructions": [
+            "Drain the cans of tuna and place in a mixing bowl.",
+            "Add the diced cucumber and chopped red onion to the mixing bowl.",
+            "Add the mayonnaise and lemon juice to the mixing bowl and mix everything together.",
+            "Season with salt and pepper to taste.",
+            "Serve the tuna salad on a bed of lettuce or on top of toasted bread."
+        ]
+    },
+    {
+        "recipeName": "Chocolate Chip Cookies",
+        "ingredients": [
+            {
+                "amount": 225,
+                "unity": "g",
+                "element": "butter, softened"
+            },
+            {
+                "amount": 200,
+                "unity": "g",
+                "element": "brown sugar"
+            },
+            {
+                "amount": 100,
+                "unity": "g",
+                "element": "white sugar"
+            },
+            {
+                "amount": 2,
+                "unity": "",
+                "element": "eggs"
+            },
+            {
+                "amount": 1,
+                "unity": "",
+                "element": "teaspoon vanilla extract"
+            },
+            {
+                "amount": 350,
+                "unity": "g",
+                "element": "all-purpose flour"
+            },
+            {
+                "amount": 1,
+                "unity": "",
+                "element": "teaspoon baking soda"
+            },
+            {
+                "amount": 0.5,
+                "unity": "",
+                "element": "teaspoon salt"
+            },
+            {
+                "amount": 200,
+                "unity": "g",
+                "element": "chocolate chips"
+            }
+        ],
+        "recipeAmount": 24,
+        "instructions": [
+            "Preheat the oven to 190°C (375°F).",
+            "In a mixing bowl, cream together the softened butter, brown sugar, and white sugar.",
+            "Add the eggs and vanilla extract to the mixing bowl and mix everything together",
+            "In a separate bowl, mix together the flour, baking soda, and salt.",
+            "Gradually add the dry ingredients to the mixing bowl with the wet ingredients, mixing until everything is combined.",
+            "Fold in the chocolate chips.",
+            "Use a cookie scoop or spoon to portion out the cookie dough onto a baking heet lined with parchment paper.",
+            "Bake for 10-12 minutes, until the cookies are golden brown",
+            "Let the cookies cool for a few minutes before transferring to a wire rack to cool completely."
+        ]
+    }
+]
