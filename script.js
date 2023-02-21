@@ -43,6 +43,7 @@ function showRecipes(recipesObj) {
     // Add the reset recipes serves button
     const recipeServesButtonEl = document.createElement("button");
     recipeServesButtonEl.textContent = "Reset Serves";
+    recipeServesButtonEl.classList.add("button");
     recipeArticleEl.appendChild(recipeServesButtonEl);
 
     // Add the recipe ingredients heading
@@ -116,21 +117,21 @@ function showRecipes(recipesObj) {
 showRecipes(recipes);
 
 // Create the sliders list
-const slidersListEl = document.querySelectorAll(".slider");
+const slidersList = document.querySelectorAll(".slider");
 // Loop through the sliders list
-for (let i = 0; i < slidersListEl.length; i++) {
+for (let i = 0; i < slidersList.length; i++) {
   // Event to change the ingredients amount according to the sliders value
-  slidersListEl[i].onchange = function () {
+  slidersList[i].onchange = function () {
     // Create the ingredients amount numbers list
-    const recipeAmountListEl = this.parentNode.querySelectorAll(
+    const ingredientAmountListEl = this.parentNode.querySelectorAll(
       ".ingredient__amount"
     );
     // Loop through the ingredients amount numbers list
-    for (let i = 0; i < recipeAmountListEl.length; i++) {
-      if (recipeAmountListEl[i].dataset.ingredientAmount != 0) {
+    for (let i = 0; i < ingredientAmountListEl.length; i++) {
+      if (ingredientAmountListEl[i].dataset.ingredientAmount != 0) {
         // Update the ingredient amount according to the slider value
-        recipeAmountListEl[i].textContent =
-          (recipeAmountListEl[i].dataset.ingredientAmount /
+        ingredientAmountListEl[i].textContent =
+          (ingredientAmountListEl[i].dataset.ingredientAmount /
             this.dataset.recipeServes) *
           this.value;
       }
@@ -138,10 +139,33 @@ for (let i = 0; i < slidersListEl.length; i++) {
   };
 
   // Event to change the serves heading according to the sliders value
-  slidersListEl[i].oninput = function () {
-    const paraServesEl = document.querySelector(".para__serves");
+  slidersList[i].oninput = function () {
+    const paraServesEl = this.parentNode.querySelector(".para__serves");
     paraServesEl.textContent = `Serves: ${this.value}`;
   };
 }
 
 //TODO: Functio to reset ther serves slider to deafult according to the recipe
+const buttonsList = document.querySelectorAll(".button");
+for (let i = 0; i < buttonsList.length; i++) {
+  // Event to reset the slider and amounts to the default
+  buttonsList[i].onclick = function () {
+    // Reset the slider value
+    const sliderEL = this.parentNode.querySelector(".slider");
+    sliderEL.value = sliderEL.dataset.recipeServes;
+
+    // Reset the serves heading
+    const paraServesEl = this.parentNode.querySelector(".para__serves");
+    paraServesEl.textContent = `Serves: ${sliderEL.dataset.recipeServes}`;
+
+    // Reset the ingredients amount numbers
+    const ingredientAmountListEl = this.parentNode.querySelectorAll(
+      ".ingredient__amount"
+    );
+    // Loop through the ingredients amount numbers list
+    for (let i = 0; i < ingredientAmountListEl.length; i++) {
+      ingredientAmountListEl[i].textContent =
+        ingredientAmountListEl[i].dataset.ingredientAmount;
+    }
+  };
+}
