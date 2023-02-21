@@ -24,6 +24,7 @@ function showRecipes(recipesObj) {
     // Add the recipes serves
     const recipeServesEl = document.createElement("p");
     recipeServesEl.textContent = `Serves: ${recipeObj.recipeAmount}`;
+    recipeServesEl.classList.add("para__serves");
     recipeArticleEl.appendChild(recipeServesEl);
 
     // Add the recipes serves slider
@@ -32,6 +33,11 @@ function showRecipes(recipesObj) {
     recipeServesSliderEl.setAttribute("min", "1");
     recipeServesSliderEl.setAttribute("max", "100");
     recipeServesSliderEl.setAttribute("value", recipeObj.recipeAmount); // The initial value is the default recipe serves amount
+    recipeServesSliderEl.classList.add("slider");
+    recipeServesSliderEl.setAttribute(
+      "data-recipe-serves",
+      recipeObj.recipeAmount
+    );
     recipeArticleEl.appendChild(recipeServesSliderEl);
 
     // Add the reset recipes serves button
@@ -53,10 +59,17 @@ function showRecipes(recipesObj) {
       // Add the elements properties separately as spans
       const ingredientAmountEl = document.createElement("span");
       ingredientAmountEl.textContent = ingredientObj.amount;
+      ingredientAmountEl.classList.add("ingredient__amount");
+      ingredientAmountEl.setAttribute(
+        "data-ingredient-amount",
+        ingredientObj.amount
+      );
       const ingredientUnityEl = document.createElement("span");
       ingredientUnityEl.textContent = ingredientObj.unity;
+      ingredientUnityEl.classList.add("ingredient__unity");
       const ingredientElementEl = document.createElement("span");
       ingredientElementEl.textContent = ingredientObj.element;
+      ingredientElementEl.classList.add("ingredient__element");
 
       // Put the properties together in a list item
       const ingredientEl = document.createElement("li");
@@ -102,6 +115,33 @@ function showRecipes(recipesObj) {
 
 showRecipes(recipes);
 
-//TODO: Function to change the ingredients amount according to the serves slider
+// Create the sliders list
+const slidersListEl = document.querySelectorAll(".slider");
+// Loop through the sliders list
+for (let i = 0; i < slidersListEl.length; i++) {
+  // Event to change the ingredients amount according to the sliders value
+  slidersListEl[i].onchange = function () {
+    // Create the ingredients amount numbers list
+    const recipeAmountListEl = this.parentNode.querySelectorAll(
+      ".ingredient__amount"
+    );
+    // Loop through the ingredients amount numbers list
+    for (let i = 0; i < recipeAmountListEl.length; i++) {
+      if (recipeAmountListEl[i].dataset.ingredientAmount != 0) {
+        // Update the ingredient amount according to the slider value
+        recipeAmountListEl[i].textContent =
+          (recipeAmountListEl[i].dataset.ingredientAmount /
+            this.dataset.recipeServes) *
+          this.value;
+      }
+    }
+  };
+
+  // Event to change the serves heading according to the sliders value
+  slidersListEl[i].oninput = function () {
+    const paraServesEl = document.querySelector(".para__serves");
+    paraServesEl.textContent = `Serves: ${this.value}`;
+  };
+}
 
 //TODO: Functio to reset ther serves slider to deafult according to the recipe
