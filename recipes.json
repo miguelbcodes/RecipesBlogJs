@@ -4,27 +4,27 @@
         "ingredients": [
             {
                 "amount": 400,
-                "unity": "g",
+                "unit": "g",
                 "element": "spaghetti"
             },
             {
                 "amount": 800,
-                "unity": "g",
+                "unit": "g",
                 "element": "canned tomatoes"
             },
             {
                 "amount": 1,
-                "unity": "",
+                "unit": "",
                 "element": "onion, chopped"
             },
             {
                 "amount": 2,
-                "unity": "",
+                "unit": "",
                 "element": "cloves garlic, minced"
             },
             {
                 "amount": "",
-                "unity": "",
+                "unit": "",
                 "element": "Salt and pepper, to taste"
             }
         ],
@@ -43,32 +43,32 @@
         "ingredients": [
             {
                 "amount": 2,
-                "unity": "",
+                "unit": "",
                 "element": "cans of tuna (160g each)"
             },
             {
                 "amount": 0.5,
-                "unity": "",
+                "unit": "",
                 "element": "cans of tuna (160g each)"
             },
             {
                 "amount": 0.5,
-                "unity": "",
+                "unit": "",
                 "element": "red onion, chopped"
             },
             {
                 "amount": 2,
-                "unity": "",
+                "unit": "",
                 "element": "tablespoons mayonnaise"
             },
             {
                 "amount": 1,
-                "unity": "",
+                "unit": "",
                 "element": "tablespoon lemon juice"
             },
             {
                 "amount": "",
-                "unity": "",
+                "unit": "",
                 "element": "Salt and pepper, to taste"
             }
         ],
@@ -86,47 +86,47 @@
         "ingredients": [
             {
                 "amount": 225,
-                "unity": "g",
+                "unit": "g",
                 "element": "butter, softened"
             },
             {
                 "amount": 200,
-                "unity": "g",
+                "unit": "g",
                 "element": "brown sugar"
             },
             {
                 "amount": 100,
-                "unity": "g",
+                "unit": "g",
                 "element": "white sugar"
             },
             {
                 "amount": 2,
-                "unity": "",
+                "unit": "",
                 "element": "eggs"
             },
             {
                 "amount": 1,
-                "unity": "",
+                "unit": "",
                 "element": "teaspoon vanilla extract"
             },
             {
                 "amount": 350,
-                "unity": "g",
+                "unit": "g",
                 "element": "all-purpose flour"
             },
             {
                 "amount": 1,
-                "unity": "",
+                "unit": "",
                 "element": "teaspoon baking soda"
             },
             {
                 "amount": 0.5,
-                "unity": "",
+                "unit": "",
                 "element": "teaspoon salt"
             },
             {
                 "amount": 200,
-                "unity": "g",
+                "unit": "g",
                 "element": "chocolate chips"
             }
         ],

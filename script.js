@@ -58,6 +58,7 @@ function showRecipes(recipesObj) {
     // Loop through the ingredients objects
     for (const ingredientObj of ingredientsObj) {
       // Add the elements properties separately as spans
+      // Add the ingredient amount span
       const ingredientAmountEl = document.createElement("span");
       ingredientAmountEl.textContent = ingredientObj.amount;
       ingredientAmountEl.classList.add("ingredient__amount");
@@ -65,9 +66,13 @@ function showRecipes(recipesObj) {
         "data-ingredient-amount",
         ingredientObj.amount
       );
-      const ingredientUnityEl = document.createElement("span");
-      ingredientUnityEl.textContent = ingredientObj.unity;
-      ingredientUnityEl.classList.add("ingredient__unity");
+
+      // Add the ingredient unit span
+      const ingredientunitEl = document.createElement("span");
+      ingredientunitEl.textContent = ingredientObj.unit;
+      ingredientunitEl.classList.add("ingredient__unit");
+
+      // Add the ingredient element span
       const ingredientElementEl = document.createElement("span");
       ingredientElementEl.textContent = ingredientObj.element;
       ingredientElementEl.classList.add("ingredient__element");
@@ -76,7 +81,7 @@ function showRecipes(recipesObj) {
       const ingredientEl = document.createElement("li");
       ingredientEl.append(
         ingredientAmountEl,
-        ingredientUnityEl,
+        ingredientunitEl,
         " ",
         ingredientElementEl
       );
