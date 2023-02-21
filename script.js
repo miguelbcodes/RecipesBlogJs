@@ -150,7 +150,6 @@ for (let i = 0; i < slidersList.length; i++) {
   };
 }
 
-//TODO: Functio to reset ther serves slider to deafult according to the recipe
 const buttonsList = document.querySelectorAll(".button");
 for (let i = 0; i < buttonsList.length; i++) {
   // Event to reset the slider and amounts to the default
