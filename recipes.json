@@ -1,6 +1,7 @@
 [
     {
         "recipeName": "Spaghetti with Tomato Sauce",
+        "recipeImage": "./assets/spaghetti.jpg",
         "ingredients": [
             {
                 "amount": 400,
@@ -40,6 +41,7 @@
     },
     {
         "recipeName": "Tuna Salad",
+        "recipeImage": "./assets/tunasalad.jpg",
         "ingredients": [
             {
                 "amount": 2,
@@ -83,6 +85,7 @@
     },
     {
         "recipeName": "Chocolate Chip Cookies",
+        "recipeImage": "./assets/cookies.jpg",
         "ingredients": [
             {
                 "amount": 225,
