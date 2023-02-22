@@ -87,7 +87,15 @@ function showRecipes(recipesObj) {
       // Add the elements properties separately as spans
       // Add the ingredient amount span
       const ingredientAmountEl = document.createElement("span");
-      ingredientAmountEl.textContent = ingredientObj.amount;
+      // Check if the ingredient amount < 1 to turn it to fraction
+      if (ingredientObj.amount < 1 && ingredientObj.amount > 0) {
+        ingredientAmountEl.textContent = decimalToFraction(
+          ingredientObj.amount
+        );
+      } else {
+        // Otherwise just show the ingredient amount according to the json file
+        ingredientAmountEl.textContent = ingredientObj.amount;
+      }
       ingredientAmountEl.classList.add("ingredient__amount");
       ingredientAmountEl.setAttribute(
         "data-ingredient-amount",
@@ -178,11 +186,40 @@ for (let i = 0; i < slidersList.length; i++) {
     // Loop through the ingredients amount numbers list
     for (let i = 0; i < ingredientAmountListEl.length; i++) {
       if (ingredientAmountListEl[i].dataset.ingredientAmount != 0) {
-        // Update the ingredient amount according to the slider value
-        ingredientAmountListEl[i].textContent =
+        // Calculate the ingredient amount according to the slider value
+        let sliderAmountValue =
           (ingredientAmountListEl[i].dataset.ingredientAmount /
             this.dataset.recipeServes) *
           this.value;
+        // Check if the ingredient amount has decimals
+        if (sliderAmountValue % 1 != 0) {
+          // Split the integer ingredient amount
+          let integerValue = sliderAmountValue - (sliderAmountValue % 1);
+          // Turn the decimal ingredient amount into a fraction
+          let fractionValue = decimalToFraction(
+            (sliderAmountValue % 1).toFixed(2) // Fix the decimal places before turn the ingredient amount into a fraction
+          );
+          console.log(fractionValue);
+          // Check if the the integer ingredient amount is zero, then just show the fraction
+          if (integerValue === 0) {
+            ingredientAmountListEl[i].textContent = `${fractionValue}`;
+          } else {
+            // Check if the the fraction ingredient amount is zero, then just show the integer
+            if (fractionValue === "0/1") {
+              ingredientAmountListEl[i].textContent = `${integerValue}`;
+            } else {
+              // If both integer and fraction ingredient amount are greater than zero, then show both
+              ingredientAmountListEl[
+                i
+              ].textContent = `${integerValue} ${fractionValue}`;
+            }
+          }
+        } else {
+          ingredientAmountListEl[i].textContent =
+            (ingredientAmountListEl[i].dataset.ingredientAmount /
+              this.dataset.recipeServes) *
+            this.value;
+        }
       }
     }
   };
@@ -219,6 +256,25 @@ for (let i = 0; i < buttonsList.length; i++) {
         ingredientAmountListEl[i].dataset.ingredientAmount;
     }
   };
+}
+
+// Function to find greatest common divisor between two numbers
+function greatestCommonDivisor(a, b) {
+  if (b < 0.0000001) return a; // Since there is a limited precision we need to limit the value.
+  return greatestCommonDivisor(b, Math.floor(a % b)); // Discard any fractions due to limitations in precision.
+}
+
+// Function to turn decimals into fractions
+function decimalToFraction(decimal) {
+  let decimalPlaces = decimal.toString().length - 2;
+  let denominator = Math.pow(10, decimalPlaces);
+  let numerator = decimal * denominator;
+
+  let divisor = greatestCommonDivisor(numerator, denominator);
+  numerator /= divisor;
+  denominator /= divisor;
+
+  return Math.floor(numerator) + "/" + Math.floor(denominator);
 }
 
 // Function to change the slider track according to its value
