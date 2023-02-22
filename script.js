@@ -43,16 +43,16 @@ function showRecipes(recipesObj) {
     // Add the recipes serves slider
     const recipeServesSliderEl = document.createElement("input");
     recipeServesSliderEl.setAttribute("type", "range");
-    recipeServesSliderEl.setAttribute("min", "1");
-    recipeServesSliderEl.setAttribute("max", "100");
+    recipeServesSliderEl.setAttribute("min", recipeObj.recipeAmount);
+    recipeServesSliderEl.setAttribute("max", `${recipeObj.recipeAmount * 10}`);
     recipeServesSliderEl.setAttribute("value", recipeObj.recipeAmount); // The initial value is the default recipe serves amount
+    recipeServesSliderEl.setAttribute("step", `${recipeObj.recipeAmount}`);
     recipeServesSliderEl.classList.add("slider");
     recipeServesSliderEl.setAttribute(
       "data-recipe-serves",
       recipeObj.recipeAmount
     );
-    recipeServesSliderEl.style.backgroundSize =
-      ((recipeObj.recipeAmount - 1) * 100) / (100 - 1) + "% 100%"; // Set the right background-size according to the recipe serves amount
+    recipeServesSliderEl.style.backgroundSize = "1% 100%"; // Set the right background-size according to the recipe serves amount
     recipeArticleEl.appendChild(recipeServesSliderEl);
 
     // Add the reset recipes serves button
@@ -203,8 +203,7 @@ for (let i = 0; i < buttonsList.length; i++) {
     sliderEL.value = sliderEL.dataset.recipeServes;
 
     // Reset the slider appearece
-    sliderEL.style.backgroundSize =
-      ((sliderEL.dataset.recipeServes - 1) * 100) / (100 - 1) + "% 100%";
+    sliderEL.style.backgroundSize = "1% 100%";
 
     // Reset the serves heading
     const paraServesEl = this.parentNode.querySelector(".para-serves");
