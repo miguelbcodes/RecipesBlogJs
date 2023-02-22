@@ -156,3 +156,18 @@ main {
 .list__instruction::marker {
   color: var(--clr-rose-500);
 }
+
+@media screen and (max-width: 640px) {
+  main {
+    padding: 1.5rem 5vw 0 5vw;
+  }
+  .recipe__heading-h3 {
+    font-size: 1.75em;
+  }
+  .recipe__image {
+    height: 20vh;
+  }
+  .recipe__container-info {
+    grid-template-columns: 1fr;
+  }
+}
