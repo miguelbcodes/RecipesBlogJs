@@ -9,22 +9,35 @@ function showRecipes(recipesObj) {
 
   // Create a wrapper to the recipes
   const recipesSectionEl = document.createElement("section");
+  recipesSectionEl.classList.add("container");
   mainEl.appendChild(recipesSectionEl);
 
   // Loop through the recipes objects
   for (const recipeObj of recipesObj) {
     // Create an article element to each recipe
     const recipeArticleEl = document.createElement("article");
+    recipeArticleEl.classList.add("container__recipe");
+
+    // Add the recipes images
+    const recipeImageEl = document.createElement("div");
+    recipeImageEl.style.backgroundImage = `url(${recipeObj.recipeImage})`;
+    recipeImageEl.classList.add("recipe__image");
+    recipeArticleEl.appendChild(recipeImageEl);
 
     // Add the recipes names
     const recipeNameEL = document.createElement("h3");
     recipeNameEL.textContent = recipeObj.recipeName;
+    recipeNameEL.classList.add("recipe__heading-h3");
     recipeArticleEl.appendChild(recipeNameEL);
+
+    // Add container to serves sliders and buttons
+    const servesContainerEl = document.createElement("div");
+    servesContainerEl.classList.add("recipe__container-serves");
 
     // Add the recipes serves
     const recipeServesEl = document.createElement("p");
     recipeServesEl.textContent = `Serves: ${recipeObj.recipeAmount}`;
-    recipeServesEl.classList.add("para__serves");
+    recipeServesEl.classList.add("para-serves");
     recipeArticleEl.appendChild(recipeServesEl);
 
     // Add the recipes serves slider
@@ -38,6 +51,8 @@ function showRecipes(recipesObj) {
       "data-recipe-serves",
       recipeObj.recipeAmount
     );
+    recipeServesSliderEl.style.backgroundSize =
+      ((recipeObj.recipeAmount - 1) * 100) / (100 - 1) + "% 100%"; // Set the right background-size according to the recipe serves amount
     recipeArticleEl.appendChild(recipeServesSliderEl);
 
     // Add the reset recipes serves button
@@ -46,13 +61,25 @@ function showRecipes(recipesObj) {
     recipeServesButtonEl.classList.add("button");
     recipeArticleEl.appendChild(recipeServesButtonEl);
 
+    // Create information container (ingredients and instructions)
+    const infoContainerEl = document.createElement("div");
+    infoContainerEl.classList.add("recipe__container-info");
+
+    // Create wrraper to ingredients headings and lists
+    const ingredientsInfoWrapperEl = document.createElement("div");
+    ingredientsInfoWrapperEl.classList.add(
+      "container-info__wrapper-ingredients"
+    );
+
     // Add the recipe ingredients heading
     const ingredientsHeadingEl = document.createElement("h4");
     ingredientsHeadingEl.textContent = "Ingredients:";
-    recipeArticleEl.appendChild(ingredientsHeadingEl);
+    ingredientsHeadingEl.classList.add("recipe__heading-h4");
+    ingredientsInfoWrapperEl.appendChild(ingredientsHeadingEl);
 
     // Create the recipe ingredients list
     const ingredientsListEl = document.createElement("ul");
+    ingredientsListEl.classList.add("recipe__list");
     const ingredientsObj = recipeObj.ingredients;
 
     // Loop through the ingredients objects
@@ -79,6 +106,7 @@ function showRecipes(recipesObj) {
 
       // Put the properties together in a list item
       const ingredientEl = document.createElement("li");
+      ingredientEl.classList.add("list__ingredient");
       ingredientEl.append(
         ingredientAmountEl,
         ingredientunitEl,
@@ -90,27 +118,43 @@ function showRecipes(recipesObj) {
       ingredientsListEl.appendChild(ingredientEl);
     }
 
-    // Add the recipe ingredients list
-    recipeArticleEl.appendChild(ingredientsListEl);
+    // Add the recipe ingredients list to the ingredients wrapper
+    ingredientsInfoWrapperEl.appendChild(ingredientsListEl);
+
+    // Create wrraper to ingredients headings and lists
+    const instructionsInfoWrapperEl = document.createElement("div");
+    instructionsInfoWrapperEl.classList.add(
+      "container-info__wrapper-ingredients"
+    );
 
     // Add the recipe instructions heading
     const instructionsHeadingEl = document.createElement("h4");
     instructionsHeadingEl.textContent = "Instructions:";
-    recipeArticleEl.appendChild(instructionsHeadingEl);
+    instructionsHeadingEl.classList.add("recipe__heading-h4");
+    instructionsInfoWrapperEl.appendChild(instructionsHeadingEl);
 
     // Create the recipe instructions list
     const instructionsListEl = document.createElement("ol");
+    instructionsListEl.classList.add("recipe__list");
 
     // Loop through the instructions array
     for (const instructionObj of recipeObj.instructions) {
       const instructionEl = document.createElement("li");
+      instructionEl.classList.add("list__instruction");
       instructionEl.textContent = instructionObj;
       // Add the instructions to the iinstructions list
       instructionsListEl.appendChild(instructionEl);
     }
 
-    // Add the instrucitons list
-    recipeArticleEl.appendChild(instructionsListEl);
+    // Add the instrucitons list to the instructions wrapper
+    instructionsInfoWrapperEl.appendChild(instructionsListEl);
+
+    // Add the wrappers to the infos container
+    infoContainerEl.appendChild(ingredientsInfoWrapperEl);
+    infoContainerEl.appendChild(instructionsInfoWrapperEl);
+
+    // Add information container (ingredients and instructions) to the article
+    recipeArticleEl.appendChild(infoContainerEl);
 
     // Add the recipe article to the recipes wrapper
     recipesSectionEl.appendChild(recipeArticleEl);
@@ -145,7 +189,7 @@ for (let i = 0; i < slidersList.length; i++) {
 
   // Event to change the serves heading according to the sliders value
   slidersList[i].oninput = function () {
-    const paraServesEl = this.parentNode.querySelector(".para__serves");
+    const paraServesEl = this.parentNode.querySelector(".para-serves");
     paraServesEl.textContent = `Serves: ${this.value}`;
   };
 }
@@ -158,8 +202,12 @@ for (let i = 0; i < buttonsList.length; i++) {
     const sliderEL = this.parentNode.querySelector(".slider");
     sliderEL.value = sliderEL.dataset.recipeServes;
 
+    // Reset the slider appearece
+    sliderEL.style.backgroundSize =
+      ((sliderEL.dataset.recipeServes - 1) * 100) / (100 - 1) + "% 100%";
+
     // Reset the serves heading
-    const paraServesEl = this.parentNode.querySelector(".para__serves");
+    const paraServesEl = this.parentNode.querySelector(".para-serves");
     paraServesEl.textContent = `Serves: ${sliderEL.dataset.recipeServes}`;
 
     // Reset the ingredients amount numbers
@@ -173,3 +221,20 @@ for (let i = 0; i < buttonsList.length; i++) {
     }
   };
 }
+
+// Function to change the slider track according to its value
+function handleInputChange(e) {
+  let sliderTarget = e.target;
+
+  const min = sliderTarget.min;
+  const max = sliderTarget.max;
+  const val = sliderTarget.value;
+
+  sliderTarget.style.backgroundSize =
+    ((val - min) * 100) / (max - min) + "% 100%";
+}
+
+// Event to trigger the function when the slider gets a input
+slidersList.forEach((input) => {
+  input.addEventListener("input", handleInputChange);
+});
